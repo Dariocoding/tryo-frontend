@@ -42,6 +42,6 @@ export const logoSite: Metadata["icons"] = [
     rel: "icon",
     type: "image/ico",
     sizes: "32x32",
-    url: "./favicon.ico",
+    url: "/favicon.ico",
   },
 ];

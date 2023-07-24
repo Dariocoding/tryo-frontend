@@ -7,13 +7,65 @@ import Link from "next/link";
 import * as React from "react";
 import { FaChevronLeft, FaSave } from "react-icons/fa";
 import * as yup from "yup";
+import PermissionsUserTable from "./PermissionsTable";
 
 interface IFormUserProps {}
+
+export const permissions = [
+  {
+    title: "Dashboard",
+    permissions: [{ description: "User Data", value: false, id: "user-data" }],
+  },
+  {
+    title: "Transactions",
+    permissions: [
+      { description: "Date", value: false, id: "transactions-date" },
+      { description: "Order ID", value: false, id: "transactions-order-id" },
+      { description: "Method", value: false, id: "transactions-method" },
+      { description: "Bank", value: false, id: "transactions-bank" },
+      { description: "Type", value: false, id: "transactions-type" },
+      { description: "Fees", value: false, id: "transactions-fees" },
+      { description: "Status", value: false, id: "transactions-status" },
+      { description: "Show Dashboard", value: false, id: "transactions-show-dashboard" },
+      { description: "Amount", value: false, id: "transactions-amount" },
+    ],
+  },
+
+  {
+    title: "Info Clients",
+    permissions: [{ description: "Show Info Clients", value: false, id: "info-clients-show" }],
+  },
+  {
+    title: "Users",
+    permissions: [{ description: "Create users", value: false, id: "users-create" }],
+  },
+  {
+    title: "Page Api",
+    permissions: [
+      { description: "Show Page Api", value: false, id: "page-api-show" },
+      { description: "Show Api Keys", value: false, id: "show-api-key" },
+      {
+        description: "Create/Edit Api Keys (Deposit/Withdraw)",
+        value: false,
+        id: "create-edit-api-keys",
+      },
+      {
+        description: "Download Pack JSON (Postman)",
+        value: false,
+        id: "download-pack-json-postman",
+      },
+    ],
+  },
+  {
+    title: "Page List",
+    permissions: [{ description: "Export table to XLS", value: false, id: "export-table-to-xls" }],
+  },
+];
 
 const FormUser: React.FunctionComponent<IFormUserProps> = (props) => {
   const {} = props;
 
-  const INITIAL_VALUES = { name: "", email: "", password: "", permissions: [] };
+  const INITIAL_VALUES = { name: "", email: "", password: "", permissions };
 
   const onSubmit = (values: any, actions: FormikHelpers<any>) => {};
 
@@ -56,7 +108,7 @@ const FormUser: React.FunctionComponent<IFormUserProps> = (props) => {
               <div className="p-4 border-b border-slate-700">
                 <h5>Choose the options available to the user</h5>
               </div>
-              <div></div>
+              <PermissionsUserTable />
             </div>
           </div>
         </div>
