@@ -2,12 +2,14 @@ import { Avatar, Dropdown, Navbar, Text } from "@nextui-org/react";
 import React from "react";
 import { useRouter } from "next/navigation";
 import { validPaths } from "@/utils";
+import { signOut } from "next-auth/react";
 
 export const UserDropdown = () => {
   const router = useRouter();
 
   const onAction = (e: React.Key) => {
     if (e === "profile") router.push(validPaths.profile.path);
+    if (e === "logout") signOut();
   };
 
   return (

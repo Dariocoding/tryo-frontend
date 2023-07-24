@@ -1,6 +1,8 @@
-import { imagesPaths } from "@/utils";
+import { getServerSessionAuth } from "@/app/api/auth/[...nextauth]/route";
+import { imagesPaths, validPaths } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 import * as React from "react";
 
 type AuthLayoutConfig = {
@@ -18,7 +20,13 @@ interface IAuthLayoutProps {
   config: AuthLayoutConfig;
 }
 
-const AuthLayout: React.FC<IAuthLayoutProps> = (props) => {
+const AuthLayout: React.FC<IAuthLayoutProps> = async (props) => {
+  const session = await getServerSessionAuth();
+
+  if (session) {
+    redirect(validPaths.dashboard.path);
+  }
+
   const { children, config } = props;
   const { subtitle, title, areYouLogin } = config;
   return (

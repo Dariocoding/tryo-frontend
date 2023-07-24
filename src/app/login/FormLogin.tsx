@@ -4,7 +4,10 @@ import InputFormik, { IInputFormikProps } from "@/components/@forms/Input";
 import { Form, Formik } from "formik";
 import Link from "next/link";
 import * as React from "react";
+import { signIn } from "next-auth/react";
 import * as yup from "yup";
+import { redirect, useRouter } from "next/navigation";
+import { validPaths } from "@/utils";
 
 interface IFormLoginProps {}
 
@@ -26,7 +29,18 @@ const configInputDefaults: Pick<IInputFormikProps, "autoComplete" | "showError" 
 
 const FormLogin: React.FunctionComponent<IFormLoginProps> = (props) => {
   const {} = props;
-  const onSubmit = () => {};
+  const router = useRouter();
+  const onSubmit = async (values: typeof INITIAL_VALUES) => {
+    const { ok, error } = (await signIn("credentials", { ...values, redirect: false })) || {};
+
+    if (error) {
+      alert("Ha ocurrido un error al iniciar sesion");
+    }
+
+    if (ok) {
+      router.push(validPaths.dashboard.path);
+    }
+  };
   return (
     <Formik onSubmit={onSubmit} initialValues={INITIAL_VALUES} validationSchema={validationSchema}>
       <Form className="max-w-md mx-auto">

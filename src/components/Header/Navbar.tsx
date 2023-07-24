@@ -1,22 +1,26 @@
 import Link from "next/link";
 import * as React from "react";
+import { useSession, signIn, signOut } from "next-auth/react";
 import { If, Then, Else } from "react-if";
-import { FaUser } from "react-icons/fa";
+import { FaSignOutAlt, FaUser } from "react-icons/fa";
 import { useAuthStore } from "@/store";
+import { validPaths } from "@/utils";
 
 interface INavbarProps {}
 
 const Navbar: React.FunctionComponent<INavbarProps> = (props) => {
-  const { authenticated, logOut } = useAuthStore();
+  const { data: session } = useSession();
+
+  /*   const { authenticated, logOut } = useAuthStore();
 
   const handleLogout = async () => {
     await logOut();
-  };
+  }; */
 
   return (
     <nav className="flex flex-grow ">
       <ul className="flex flex-grow justify-end flex-wrap items-center md:mt-0 mt-2">
-        <If condition={authenticated}>
+        <If condition={Boolean(session)}>
           <Then>
             <li>
               <Link href="/profile" className="font-medium">
@@ -25,16 +29,16 @@ const Navbar: React.FunctionComponent<INavbarProps> = (props) => {
             </li>
 
             <li>
-              {/* <Button variant="default" onClick={handleLogout}>
+              <button type="button" onClick={() => signOut()} className="btn btn-sm">
                 <span>Cerrar sesión</span>
                 <FaSignOutAlt />
-              </Button> */}
+              </button>
             </li>
           </Then>
           <Else>
             <li>
               <Link
-                href="/login"
+                href={validPaths.login.path}
                 className="font-bold bg-white px-7 py-2 text-black flex items-center transition duration-150 ease-in-out"
               >
                 Log In
@@ -42,9 +46,9 @@ const Navbar: React.FunctionComponent<INavbarProps> = (props) => {
             </li>
 
             <li>
-              <Link href="/signup" className="ml-3 btn-sm">
+              <Link href={validPaths.signup.path} className="ml-3 btn-sm">
                 <span className="text-primary hover:text-primaryHover font-bold transition">
-                  Sign In
+                  Sign Up
                 </span>
               </Link>
             </li>
