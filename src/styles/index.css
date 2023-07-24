@@ -1,0 +1,113 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer {
+  @font-face {
+    font-family: "Articulat CF";
+    src: url("/fonts/articulat-cf/Webfont/ArticulatCF-Thin.woff2") format("woff2");
+    font-weight: 100;
+    font-display: swap;
+    font-style: thin;
+  }
+}
+
+@layer {
+  @font-face {
+    font-family: "Articulat CF";
+    src: url("/fonts/articulat-cf/Webfont/ArticulatCF-ExtraLight.woff2") format("woff2");
+    font-weight: 200;
+    font-display: swap;
+    font-style: extralight;
+  }
+}
+
+@layer {
+  @font-face {
+    font-family: "Articulat CF";
+    src: url("/fonts/articulat-cf/Webfont/ArticulatCF-Light.woff2") format("woff2");
+    font-weight: 300;
+    font-display: swap;
+    font-style: light;
+  }
+}
+
+@layer {
+  @font-face {
+    font-family: "Articulat CF";
+    src: url("/fonts/articulat-cf/Webfont/ArticulatCF-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-display: swap;
+    font-style: normal;
+  }
+}
+
+@layer {
+  @font-face {
+    font-family: "Articulat CF";
+    src: url("/fonts/articulat-cf/Webfont/ArticulatCF-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-display: swap;
+    font-style: medium;
+  }
+}
+
+@layer {
+  @font-face {
+    font-family: "Articulat CF";
+    src: url("/fonts/articulat-cf/Webfont/ArticulatCF-DemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-display: swap;
+    font-style: semibold;
+  }
+}
+
+@layer {
+  @font-face {
+    font-family: "Articulat CF";
+    src: url("/fonts/articulat-cf/Webfont/ArticulatCF-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-display: swap;
+    font-style: bold;
+  }
+}
+
+@layer {
+  @font-face {
+    font-family: "Articulat CF";
+    src: url("/fonts/articulat-cf/Webfont/ArticulatCF-ExtraBold.woff2") format("woff2");
+    font-weight: 800;
+    font-display: swap;
+    font-style: bold;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+* {
+  font-family: "Articulat CF", sans-serif;
+  margin: 0;
+}
+
+.auth-background {
+  background-image: linear-gradient(90deg, rgb(32, 32, 32, 0.7), rgba(32, 32, 32, 0.7)),
+    url("/images/gradient-hero-home.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.tile {
+  @apply bg-tile p-3.5 rounded-lg mb-4 relative shadow-md shadow-neutral-900;
+}
+
+.tile-title {
+  @apply p-4 border-b border-neutral-800;
+}
+
+.tile-body {
+  @apply p-4;
+}
