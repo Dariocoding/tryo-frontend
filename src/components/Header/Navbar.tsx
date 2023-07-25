@@ -17,15 +17,18 @@ const Navbar: React.FunctionComponent<INavbarProps> = (props) => {
         <If condition={Boolean(session)}>
           <Then>
             <li>
-              <Link href="/profile" className="font-medium">
-                <FaUser className="w-6 h-6 p-px  hover:text-primaryHover rounded-full border-2 border-primary flex-shrink-0 -mr-1" />
+              <Link href={validPaths.profile.path} className="font-medium">
+                <FaUser className="w-6 h-6 p-px hover:text-gray-100 rounded-full border-2 border-primary flex-shrink-0" />
               </Link>
             </li>
 
             <li>
-              <button type="button" onClick={() => signOut()} className="btn btn-sm">
+              <button
+                type="button"
+                onClick={() => signOut()}
+                className="btn btn-xs mb-0 ml-3 bg-white transition duration-300 ease-in-out hover:bg-gray-100 font-bold text-black rounded-none"
+              >
                 <span>Cerrar sesión</span>
-                <FaSignOutAlt />
               </button>
             </li>
           </Then>

@@ -70,7 +70,7 @@ const Provider: React.FunctionComponent<IProviderProps> = (props) => {
         <Image {...imagesPaths.logoGradient} width={90} height={70} />
       </div>
       <motion.div
-        style={{ height: "100%", ...(isLoading ? { overflow: "hidden" } : {}) }}
+        style={{ height: isLoading ? "0" : "100%", ...(isLoading ? { overflow: "hidden" } : {}) }}
         initial={{ opacity: 0 }}
         animate={{
           opacity: isLoading ? 0 : 1,

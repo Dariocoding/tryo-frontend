@@ -4,7 +4,7 @@ import classNames from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
-import { useSession } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import { Else, If, Then } from "react-if";
 
 interface IDrawerHeaderProps {
@@ -20,7 +20,7 @@ const DrawerHeader: React.FunctionComponent<IDrawerHeaderProps> = (props) => {
     <div className="lg:hidden block">
       <div
         className={classNames(
-          "fixed z-40 h-screen p-4 overflow-y-auto bg-slate-800 w-full left-0 top-0 transition-transform",
+          "fixed z-40 h-screen p-4 overflow-y-auto bg-slate-800 w-full left-0 top-0 transition-transform duration-500",
           isOpen ? "transform-none" : "-translate-x-full"
         )}
         aria-labelledby="drawer-label"
@@ -75,6 +75,18 @@ const DrawerHeader: React.FunctionComponent<IDrawerHeaderProps> = (props) => {
               </li>
             </Then>
             <Else>
+              <li>
+                <button type="button" className={link}>
+                  <span
+                    onClick={async () => {
+                      onClose();
+                      await signOut();
+                    }}
+                  >
+                    Cerrar sesión{" "}
+                  </span>
+                </button>
+              </li>
               <li>
                 <Link href={validPaths.dashboard.path}>
                   <span className={link} onClick={() => onClose()}>
