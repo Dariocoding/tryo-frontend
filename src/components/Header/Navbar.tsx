@@ -26,7 +26,7 @@ const Navbar: React.FunctionComponent<INavbarProps> = (props) => {
               <button
                 type="button"
                 onClick={() => signOut()}
-                className="btn btn-xs mb-0 ml-3 bg-white transition duration-300 ease-in-out hover:bg-gray-100 font-bold text-black rounded-none"
+                className="btn btn-xs !mb-0 ml-3 bg-white transition duration-300 ease-in-out hover:bg-gray-100 font-bold text-black rounded-none"
               >
                 <span>Cerrar sesión</span>
               </button>
