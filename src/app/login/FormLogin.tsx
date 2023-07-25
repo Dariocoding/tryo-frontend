@@ -22,13 +22,13 @@ const validationSchema = yup.object({
 });
 
 const configInputDefaults: Pick<IInputFormikProps, "autoComplete" | "showError" | "showSuccess"> = {
-  autoComplete: "off",
   showSuccess: false,
   showError: false,
 };
 
 const FormLogin: React.FunctionComponent<IFormLoginProps> = (props) => {
   const {} = props;
+  const [isOkey, setIsOkey] = React.useState(false);
   const router = useRouter();
   const onSubmit = async (values: typeof INITIAL_VALUES) => {
     const { ok, error } = (await signIn("credentials", { ...values, redirect: false })) || {};
@@ -38,6 +38,7 @@ const FormLogin: React.FunctionComponent<IFormLoginProps> = (props) => {
     }
 
     if (ok) {
+      setIsOkey(true);
       router.push(validPaths.dashboard.path);
     }
   };
@@ -66,7 +67,9 @@ const FormLogin: React.FunctionComponent<IFormLoginProps> = (props) => {
             ¿Olvidaste tu contraseña?
           </Link>
         </div>
-        <ButtonFormik className="btn-secondary btn-pill w-full">Iniciar sesión</ButtonFormik>
+        <ButtonFormik loading={isOkey} className="btn-secondary btn-pill w-full">
+          Iniciar sesión
+        </ButtonFormik>
       </Form>
     </Formik>
   );

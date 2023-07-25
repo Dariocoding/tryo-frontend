@@ -1,8 +1,14 @@
 import { FaChevronLeft, FaUserEdit } from "react-icons/fa";
 import FormUser from "../../FormUser";
 import WrapperDashboard from "@/layouts/WrapperDashboard";
-import { findSidebarItem, validPaths } from "@/utils";
-import Link from "next/link";
+import { findSidebarItem, logoSite, validPaths } from "@/utils";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Tryo - Users - Edit",
+  description: "Tryo - Users - Edit",
+  icons: logoSite,
+};
 
 export default function EditUserPage() {
   return (

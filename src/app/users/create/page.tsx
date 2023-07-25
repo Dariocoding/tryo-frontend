@@ -1,8 +1,14 @@
 import WrapperDashboard from "@/layouts/WrapperDashboard";
-import { findSidebarItem, validPaths } from "@/utils";
-import { FaChevronLeft, FaUserPlus } from "react-icons/fa";
+import { findSidebarItem, logoSite, validPaths } from "@/utils";
+import { FaUserPlus } from "react-icons/fa";
 import FormUser from "../FormUser";
-import Link from "next/link";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Tryo - Users - Create",
+  description: "Tryo - Users - Create",
+  icons: logoSite,
+};
 
 export default function CreateUserPage() {
   return (

@@ -1,21 +1,15 @@
+"use client";
 import Link from "next/link";
 import * as React from "react";
-import { useSession, signIn, signOut } from "next-auth/react";
+import { useSession, signOut } from "next-auth/react";
 import { If, Then, Else } from "react-if";
 import { FaSignOutAlt, FaUser } from "react-icons/fa";
-import { useAuthStore } from "@/store";
 import { validPaths } from "@/utils";
 
 interface INavbarProps {}
 
 const Navbar: React.FunctionComponent<INavbarProps> = (props) => {
   const { data: session } = useSession();
-
-  /*   const { authenticated, logOut } = useAuthStore();
-
-  const handleLogout = async () => {
-    await logOut();
-  }; */
 
   return (
     <nav className="flex flex-grow ">

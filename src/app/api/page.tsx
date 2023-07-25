@@ -1,7 +1,14 @@
 import WrapperDashboard from "@/layouts/WrapperDashboard";
-import { findSidebarItem, validPaths } from "@/utils";
+import { findSidebarItem, logoSite, validPaths } from "@/utils";
 import WrapperForms from "./WrapperForms";
 import DashboardLayout from "@/layouts/DashboardLayout";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Tryo - API",
+  description: "Tryo - API",
+  icons: logoSite,
+};
 
 export default function ApiPage() {
   return (

@@ -1,7 +1,11 @@
+"use client";
+import { validPaths } from "@/utils";
 import classNames from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 import * as React from "react";
+import { useSession } from "next-auth/react";
+import { Else, If, Then } from "react-if";
 
 interface IDrawerHeaderProps {
   isOpen: boolean;
@@ -10,6 +14,8 @@ interface IDrawerHeaderProps {
 
 const DrawerHeader: React.FunctionComponent<IDrawerHeaderProps> = (props) => {
   const { isOpen, onClose } = props;
+  const { data: session } = useSession();
+
   return (
     <div className="lg:hidden block">
       <div
@@ -46,21 +52,38 @@ const DrawerHeader: React.FunctionComponent<IDrawerHeaderProps> = (props) => {
         </button>
         <ul className="flex flex-grow flex-col lg:justify-end space-y-2 mt-12 justify-center items-center overflow-auto text-white">
           <li>
-            <Link href="/">
+            <Link href={validPaths.home.path}>
               <span className={link}>Inicio </span>
             </Link>
           </li>
 
-          <li>
-            <Link href="/login">
-              <span className={link}>Iniciar sesión </span>
-            </Link>
-          </li>
-          <li>
-            <Link href="/signup">
-              <span className={link}>Registrarse </span>
-            </Link>
-          </li>
+          <If condition={session === null}>
+            <Then>
+              <li>
+                <Link href={validPaths.login.path}>
+                  <span className={link} onClick={() => onClose()}>
+                    Iniciar sesión{" "}
+                  </span>
+                </Link>
+              </li>
+              <li>
+                <Link href={validPaths.signup.path}>
+                  <span className={link} onClick={() => onClose()}>
+                    Registrarse{" "}
+                  </span>
+                </Link>
+              </li>
+            </Then>
+            <Else>
+              <li>
+                <Link href={validPaths.dashboard.path}>
+                  <span className={link} onClick={() => onClose()}>
+                    Dashboard{" "}
+                  </span>
+                </Link>
+              </li>
+            </Else>
+          </If>
         </ul>
       </div>
     </div>

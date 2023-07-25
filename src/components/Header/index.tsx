@@ -32,8 +32,11 @@ const Header: React.FunctionComponent<IHeaderProps> = (props) => {
           !top && "shadow-lg"
         )}
       >
-        <span className="lg:hidden cursor-pointer flex text-sm items-center absolute top-0 right-0 h-full px-4 text-black bg-[#C7FFBE]">
-          <FaBars size={18} onClick={() => setNavBarMobile(true)} />
+        <span
+          onClick={() => setNavBarMobile(true)}
+          className="lg:hidden cursor-pointer flex text-sm items-center absolute top-0 right-0 h-full px-4 text-black bg-[#C7FFBE]"
+        >
+          <FaBars size={18} />
         </span>
         <div className="max-w-[90rem] mx-auto px-2 sm:px-6 md:mt-0 mt-2">
           <div className="flex items-center md:flex-row flex-col justify-between md:h-16 lg:h-20 h-10 md:mt-0 mt-4">

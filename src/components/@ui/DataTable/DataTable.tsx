@@ -110,7 +110,7 @@ function DataTable<T = any>(props: React.PropsWithChildren<IDataTableProps<T>>) 
                   <tr key={key}>
                     {heading.map((h, key) => (
                       <td
-                        key={key}
+                        key={h.field}
                         suppressHydrationWarning
                         className={classNames(h.center && "text-center")}
                       >
@@ -130,8 +130,8 @@ function DataTable<T = any>(props: React.PropsWithChildren<IDataTableProps<T>>) 
           <div>
             {currentItemRendered.map((item, key) => (
               <span key={key}>
-                {heading.map((h, key) => (
-                  <div key={key} className="py-1 my-1">
+                {heading.map((h) => (
+                  <div key={h.field} className="py-1 my-1">
                     <span className="font-bold text-xs">
                       {typeof h.title === "function"
                         ? h.title({ currentItems: currentItemRendered })
